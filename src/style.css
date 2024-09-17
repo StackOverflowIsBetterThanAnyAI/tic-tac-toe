@@ -1,0 +1,200 @@
+@font-face {
+    font-family: Rowdies-Bold;
+    src: url(./assets/fonts/Rowdies-Bold.ttf);
+}
+
+@font-face {
+    font-family: Rowdies;
+    src: url(./assets/fonts/Rowdies-Regular.ttf);
+}
+
+* {
+    border: none;
+    color: #e3e3e3;
+    font-family: Rowdies;
+    margin: 0;
+    padding: 0;
+    text-wrap: balance;
+}
+
+@media only screen and (min-width: 768px) {
+    button:not(#restartGame),
+    h1 {
+        font-size: 4rem;
+    }
+
+    button:not(#restartGame) {
+        width: 128px;
+    }
+
+    #restartGame,
+    #winnerText {
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    button:not(#restartGame),
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    button:not(#restartGame) {
+        width: min(30vw, 25svh, 128px);
+    }
+
+    #restartGame,
+    #winnerText {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 384px) {
+    button:not(#restartGame),
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    button:not(#restartGame) {
+        width: 30vw;
+    }
+
+    #restartGame,
+    #winnerText {
+        font-size: 1.25rem;
+    }
+}
+
+body {
+    background-color: #5a5a5b;
+}
+
+button:not(#restartGame) {
+    aspect-ratio: 1/1;
+    background-color: #5a5a5b;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    cursor: pointer;
+    background-color: #8f8f8f;
+}
+
+button:active:not(:disabled) {
+    background-color: #b0afaf;
+}
+
+button:focus-visible {
+    border-radius: 8px;
+    outline: #2e2e2e solid 8px;
+    z-index: 9;
+}
+
+h1 {
+    font-family: Rowdies-Bold;
+    padding-bottom: 16px;
+    padding-top: 24px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: auto;
+    max-width: 768px;
+    min-height: 100svh;
+}
+
+#gameGrid {
+    display: grid;
+    grid-template: repeat(3, auto) / repeat(3, auto);
+    justify-content: center;
+    margin: 0px auto;
+    text-align: center;
+    width: min(80%, 512px);
+}
+
+#restartGame {
+    background-color: #5a5a5b;
+    border-radius: 16px;
+    display: none;
+    margin: 0px auto 32px;
+    outline: #e3e3e3 solid 4px;
+    padding: 8px 32px;
+}
+
+#restartGame:hover {
+    background-color: #6a6969;
+}
+
+#restartGame:active {
+    background-color: #8d8d8d;
+}
+
+#restartGame:focus-visible {
+    border-radius: 8px;
+    outline: #2e2e2e solid 8px;
+    z-index: 9;
+}
+
+#winnerText {
+    display: none;
+    padding: 24px 0px;
+    text-align: center;
+}
+
+.gridElement0 {
+    border-bottom: 4px solid #e3e3e3;
+    border-right: 4px solid #e3e3e3;
+}
+
+.gridElement1 {
+    border-bottom: 4px solid #e3e3e3;
+    border-left: 4px solid #e3e3e3;
+    border-right: 4px solid #e3e3e3;
+}
+
+.gridElement2 {
+    border-bottom: 4px solid #e3e3e3;
+    border-left: 4px solid #e3e3e3;
+}
+
+.gridElement3 {
+    border-bottom: 4px solid #e3e3e3;
+    border-right: 4px solid #e3e3e3;
+    border-top: 4px solid #e3e3e3;
+}
+
+.gridElement4 {
+    border-bottom: 4px solid #e3e3e3;
+    border-left: 4px solid #e3e3e3;
+    border-right: 4px solid #e3e3e3;
+    border-top: 4px solid #e3e3e3;
+}
+
+.gridElement5 {
+    border-bottom: 4px solid #e3e3e3;
+    border-left: 4px solid #e3e3e3;
+    border-top: 4px solid #e3e3e3;
+}
+
+.gridElement6 {
+    border-right: 4px solid #e3e3e3;
+    border-top: 4px solid #e3e3e3;
+}
+
+.gridElement7 {
+    border-left: 4px solid #e3e3e3;
+    border-right: 4px solid #e3e3e3;
+    border-top: 4px solid #e3e3e3;
+}
+
+.gridElement8 {
+    border-left: 4px solid #e3e3e3;
+    border-top: 4px solid #e3e3e3;
+}
