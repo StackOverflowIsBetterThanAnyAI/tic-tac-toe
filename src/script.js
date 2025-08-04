@@ -78,7 +78,7 @@ const highlightWinningRow = (elements, winner) => {
     }
     winningElements.map((item) => {
         winner === 'X'
-            ? (item.style.color = '#84cc16')
+            ? (item.style.color = '#2ecc16ff')
             : (item.style.color = '#dc2626')
     })
 }
@@ -180,7 +180,10 @@ const setMark = (element, mark) => {
     element.textContent = mark
     element.setAttribute('disabled', true)
     const index = element.classList[0].at(-1)
-    mark === 'X' && (gridScore[index] = 'X')
+    if (mark === 'X') {
+        gridScore[index] = 'X'
+        element.style.color = '#dcdc1a'
+    }
     checkOver(mark)
 }
 
