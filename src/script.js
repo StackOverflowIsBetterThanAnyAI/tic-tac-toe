@@ -149,7 +149,8 @@ const checkOver = (player) => {
         return
     }
     player === 'X' && disableAllButtons()
-    player === 'X' && setTimeout(() => computerMove(), 500)
+    player === 'X' &&
+        setTimeout(() => computerMove(), Math.random() * 500 + 500)
     player === 'O' &&
         gridScore.map((item, index) => {
             if (!item) {
