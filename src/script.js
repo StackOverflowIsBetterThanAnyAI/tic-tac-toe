@@ -148,6 +148,7 @@ const checkOver = (player) => {
         gameOver('-')
         return
     }
+
     player === 'X' && disableAllButtons()
     player === 'X' &&
         setTimeout(() => computerMoveIntelligent(), Math.random() * 500 + 500)
