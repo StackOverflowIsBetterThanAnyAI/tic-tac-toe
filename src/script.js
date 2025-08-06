@@ -37,11 +37,13 @@ const clearScore = () => {
 }
 const hideWinningText = () => {
     restartGame.style.display = 'none'
+    restartGame.setAttribute('disabled', true)
     winnerText.style.display = 'none'
 }
 
 const displayWinningText = (winner) => {
     restartGame.style.display = 'block'
+    restartGame.removeAttribute('disabled')
     winnerText.style.display = 'block'
     switch (winner) {
         case 'O':
@@ -62,7 +64,16 @@ const handleRestart = () => {
     hideWinningText()
 }
 
+const handleRestartKeydown = (e) => {
+    if ([' ', 'Enter'].includes(e.key)) {
+        clearScore()
+        enableAllButtons()
+        hideWinningText()
+    }
+}
+
 restartGame.addEventListener('mousedown', handleRestart)
+restartGame.addEventListener('keydown', handleRestartKeydown)
 
 const gameOver = (winner) => {
     disableAllButtons()
@@ -310,8 +321,40 @@ const generateGrid = () => {
         gridElement.addEventListener('mousedown', () =>
             setMark(gridElement, 'X')
         )
+        gridElement.addEventListener('keydown', (e) => {
+            if ([' ', 'Enter'].includes(e.key)) {
+                setMark(gridElement, 'X')
+            }
+        })
         gameGrid.appendChild(gridElement)
     }
 }
+
+const handleFocusTrap = (e) => {
+    const focusableButtons = Array.from(
+        document.querySelectorAll('button')
+    ).filter((item) => !item.disabled)
+
+    const firstButton = focusableButtons[0]
+    const lastButton = focusableButtons.at(-1)
+
+    if (e.key !== 'Tab') {
+        return
+    }
+
+    if (e.shiftKey) {
+        if (document.activeElement === firstButton) {
+            e.preventDefault()
+            lastButton.focus()
+        }
+    } else {
+        if (document.activeElement === lastButton) {
+            e.preventDefault()
+            firstButton.focus()
+        }
+    }
+}
+
+document.addEventListener('keydown', handleFocusTrap)
 
 generateGrid()
