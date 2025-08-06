@@ -161,6 +161,7 @@ const checkOver = (player) => {
             }
         })
 }
+
 const computerMoveIntelligent = () => {
     const availableElements = gridScore
         .map((item, index) => (item === '' ? index : null))
