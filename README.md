@@ -2,4 +2,4 @@
 
 Play a match of Tic Tac Toe against an intelligent computer AI.
 
-![Preview Image](https://github.com/user-attachments/assets/3d8ce5da-8f8f-4b5b-a193-3ea32459d049)
+![Preview Image](https://github.com/user-attachments/assets/a1a84883-c0ca-48bb-8543-7632281db32b)
