@@ -1,9 +1,6 @@
-export const computerMoveIntelligent = (
-    findIntelligentMoves,
-    gridScore,
-    setMark,
-    checkOver
-) => {
+import { findIntelligentMoves } from './findIntelligentMoves.js'
+
+export const computerMoveIntelligent = (gridScore, setMark, checkOver) => {
     const availableElements = gridScore
         .map((item, index) => (item === '' ? index : null))
         .filter((index) => index !== null)

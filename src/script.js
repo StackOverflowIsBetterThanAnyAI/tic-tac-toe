@@ -119,13 +119,7 @@ const checkOver = (player) => {
     player === 'X' && disableAllButtons()
     player === 'X' &&
         setTimeout(
-            () =>
-                computerMoveIntelligent(
-                    findIntelligentMoves,
-                    gridScore,
-                    setMark,
-                    checkOver
-                ),
+            () => computerMoveIntelligent(gridScore, setMark, checkOver),
             Math.random() * 500 + 500
         )
     player === 'O' &&
