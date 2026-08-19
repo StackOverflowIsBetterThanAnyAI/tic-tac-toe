@@ -1,7 +1,7 @@
 import { findIntelligentMoves } from './findIntelligentMoves.js'
 import { setMark } from './setMark.js'
 
-export const computerMoveIntelligent = (gridScore, checkOver) => {
+export const computerMoveIntelligent = (gridScore, restartGame, winnerText) => {
     const availableElements = gridScore
         .map((item, index) => (item === '' ? index : null))
         .filter((index) => index !== null)
@@ -18,5 +18,5 @@ export const computerMoveIntelligent = (gridScore, checkOver) => {
         `gridElement${intelligentElements[random]}`
     )[0]
 
-    setMark(checkOver, element, gridScore, 'O')
+    setMark(element, gridScore, 'O', restartGame, winnerText)
 }

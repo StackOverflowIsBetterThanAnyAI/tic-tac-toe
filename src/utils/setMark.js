@@ -1,4 +1,6 @@
-export const setMark = (checkOver, element, gridScore, mark) => {
+import { checkOver } from './checkOver.js'
+
+export const setMark = (element, gridScore, mark, restartGame, winnerText) => {
     element.textContent = mark
     element.setAttribute('disabled', true)
     const index = element.classList[0].at(-1)
@@ -6,5 +8,5 @@ export const setMark = (checkOver, element, gridScore, mark) => {
         gridScore[index] = 'X'
         element.style.color = '#fcd874'
     }
-    checkOver(mark)
+    checkOver(gridScore, mark, restartGame, winnerText)
 }
