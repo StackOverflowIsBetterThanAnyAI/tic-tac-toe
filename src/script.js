@@ -9,8 +9,8 @@ import { highlightWinningRow } from './utils/highlightWinningRow.js'
 
 const gridScore = ['', '', '', '', '', '', '', '', '']
 
-const winnerText = document.getElementById('winnerText')
 const restartGame = document.getElementById('restartGame')
+const winnerText = document.getElementById('winnerText')
 
 restartGame.addEventListener('mousedown', () =>
     handleRestart(gridScore, restartGame, winnerText)
