@@ -1,3 +1,8 @@
+:root {
+    --text-color: #f3f1f1;
+    --grid-border: 4px solid var(--text-color);
+}
+
 @font-face {
     font-family: Rowdies-Bold;
     src: url(./assets/fonts/Rowdies-Bold.ttf);
@@ -10,7 +15,7 @@
 
 * {
     border: none;
-    color: #e3e3e3;
+    color: var(--text-color);
     font-family: Rowdies;
     margin: 0;
     padding: 0;
@@ -69,22 +74,12 @@ body {
     background-color: #5a5a5b;
 }
 
-button:not(#restartGame) {
-    aspect-ratio: 1/1;
-    background-color: #5a5a5b;
+button:hover {
+    cursor: pointer;
 }
 
 button:disabled {
     cursor: not-allowed;
-}
-
-button:hover:not(:disabled) {
-    cursor: pointer;
-    background-color: #8f8f8f;
-}
-
-button:active:not(:disabled) {
-    background-color: #b0afaf;
 }
 
 button:focus-visible {
@@ -93,12 +88,25 @@ button:focus-visible {
     z-index: 9;
 }
 
+#gameGrid > button {
+    aspect-ratio: 1/1;
+    background-color: #686869;
+}
+
+#gameGrid > button:hover:not(:disabled) {
+    background-color: #5a5a5b;
+}
+
 h1 {
     font-family: Rowdies-Bold;
     padding-bottom: 16px;
     padding-top: 24px;
     text-align: center;
     text-transform: uppercase;
+}
+
+body {
+    background-image: linear-gradient(#686869, #504f4f);
 }
 
 main {
@@ -116,7 +124,7 @@ main {
     justify-content: center;
     margin: 0px auto;
     text-align: center;
-    width: min(80%, 512px);
+    outline: 8px solid var(--text-color);
 }
 
 #restartGame {
@@ -149,52 +157,52 @@ main {
 }
 
 .gridElement0 {
-    border-bottom: 4px solid #e3e3e3;
-    border-right: 4px solid #e3e3e3;
+    border-bottom: var(--grid-border);
+    border-right: var(--grid-border);
 }
 
 .gridElement1 {
-    border-bottom: 4px solid #e3e3e3;
-    border-left: 4px solid #e3e3e3;
-    border-right: 4px solid #e3e3e3;
+    border-bottom: var(--grid-border);
+    border-left: var(--grid-border);
+    border-right: var(--grid-border);
 }
 
 .gridElement2 {
-    border-bottom: 4px solid #e3e3e3;
-    border-left: 4px solid #e3e3e3;
+    border-bottom: var(--grid-border);
+    border-left: var(--grid-border);
 }
 
 .gridElement3 {
-    border-bottom: 4px solid #e3e3e3;
-    border-right: 4px solid #e3e3e3;
-    border-top: 4px solid #e3e3e3;
+    border-bottom: var(--grid-border);
+    border-right: var(--grid-border);
+    border-top: var(--grid-border);
 }
 
 .gridElement4 {
-    border-bottom: 4px solid #e3e3e3;
-    border-left: 4px solid #e3e3e3;
-    border-right: 4px solid #e3e3e3;
-    border-top: 4px solid #e3e3e3;
+    border-bottom: var(--grid-border);
+    border-left: var(--grid-border);
+    border-right: var(--grid-border);
+    border-top: var(--grid-border);
 }
 
 .gridElement5 {
-    border-bottom: 4px solid #e3e3e3;
-    border-left: 4px solid #e3e3e3;
-    border-top: 4px solid #e3e3e3;
+    border-bottom: var(--grid-border);
+    border-left: var(--grid-border);
+    border-top: var(--grid-border);
 }
 
 .gridElement6 {
-    border-right: 4px solid #e3e3e3;
-    border-top: 4px solid #e3e3e3;
+    border-right: var(--grid-border);
+    border-top: var(--grid-border);
 }
 
 .gridElement7 {
-    border-left: 4px solid #e3e3e3;
-    border-right: 4px solid #e3e3e3;
-    border-top: 4px solid #e3e3e3;
+    border-left: var(--grid-border);
+    border-right: var(--grid-border);
+    border-top: var(--grid-border);
 }
 
 .gridElement8 {
-    border-left: 4px solid #e3e3e3;
-    border-top: 4px solid #e3e3e3;
+    border-left: var(--grid-border);
+    border-top: var(--grid-border);
 }
