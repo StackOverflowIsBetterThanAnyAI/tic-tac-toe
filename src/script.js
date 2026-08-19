@@ -1,3 +1,4 @@
+import { clearScore } from './utils/clearScore.js'
 import { computerMoveIntelligent } from './utils/computerMoveIntelligent.js'
 import { disableAllButtons } from './utils/disableAllButtons.js'
 import { enableAllButtons } from './utils/enableAllButtons.js'
@@ -12,28 +13,15 @@ let gridScore = ['', '', '', '', '', '', '', '', '']
 const winnerText = document.getElementById('winnerText')
 const restartGame = document.getElementById('restartGame')
 
-const clearScore = () => {
-    gridScore = ['', '', '', '', '', '', '', '', '']
-
-    const gridButtons = Array.from(
-        document.querySelectorAll('button:not(#restartGame)')
-    )
-
-    for (let i in gridButtons) {
-        gridButtons[i].textContent = ''
-        gridButtons[i].style.color = '#e3e3e3'
-    }
-}
-
 const handleRestart = () => {
-    clearScore()
+    clearScore(gridScore)
     enableAllButtons()
     hideWinningText(restartGame, winnerText)
 }
 
 const handleRestartKeydown = (e) => {
     if ([' ', 'Enter'].includes(e.key)) {
-        clearScore()
+        clearScore(gridScore)
         enableAllButtons()
         hideWinningText(restartGame, winnerText)
     }
