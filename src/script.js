@@ -1,27 +1,14 @@
+import { computerMoveIntelligent } from './utils/computerMoveIntelligent.js'
+import { disableAllButtons } from './utils/disableAllButtons.js'
+import { displayWinningText } from './utils/displayWinningText.js'
+import { enableAllButtons } from './utils/enableAllButtons.js'
+import { handleFocusTrap } from './utils/handleFocusTrap.js'
+import { hideWinningText } from './utils/hideWinningText.js'
+
 let gridScore = ['', '', '', '', '', '', '', '', '']
 
 const winnerText = document.getElementById('winnerText')
 const restartGame = document.getElementById('restartGame')
-
-const disableAllButtons = () => {
-    const gridButtons = Array.from(
-        document.querySelectorAll('button:not(#restartGame)')
-    )
-
-    for (let i in gridButtons) {
-        gridButtons[i].setAttribute('disabled', true)
-    }
-}
-
-const enableAllButtons = () => {
-    const gridButtons = Array.from(
-        document.querySelectorAll('button:not(#restartGame)')
-    )
-
-    for (let i in gridButtons) {
-        gridButtons[i].removeAttribute('disabled')
-    }
-}
 
 const clearScore = () => {
     gridScore = ['', '', '', '', '', '', '', '', '']
@@ -35,49 +22,29 @@ const clearScore = () => {
         gridButtons[i].style.color = '#e3e3e3'
     }
 }
-const hideWinningText = () => {
-    restartGame.style.display = 'none'
-    restartGame.setAttribute('disabled', true)
-    winnerText.style.display = 'none'
-}
-
-const displayWinningText = (winner) => {
-    restartGame.style.display = 'block'
-    restartGame.removeAttribute('disabled')
-    winnerText.style.display = 'block'
-    switch (winner) {
-        case 'O':
-            winnerText.innerHTML = 'COM Wins!'
-            break
-        case 'X':
-            winnerText.innerHTML = 'You Win!'
-            break
-        default:
-            winnerText.innerHTML = 'Tie!'
-            break
-    }
-}
 
 const handleRestart = () => {
     clearScore()
     enableAllButtons()
-    hideWinningText()
+    hideWinningText(restartGame, winnerText)
 }
 
 const handleRestartKeydown = (e) => {
     if ([' ', 'Enter'].includes(e.key)) {
         clearScore()
         enableAllButtons()
-        hideWinningText()
+        hideWinningText(restartGame, winnerText)
     }
 }
 
 restartGame.addEventListener('mousedown', handleRestart)
 restartGame.addEventListener('keydown', handleRestartKeydown)
 
+document.addEventListener('keydown', handleFocusTrap)
+
 const gameOver = (winner) => {
     disableAllButtons()
-    displayWinningText(winner)
+    displayWinningText(restartGame, winner, winnerText)
 }
 
 const highlightWinningRow = (elements, winner) => {
@@ -162,7 +129,16 @@ const checkOver = (player) => {
 
     player === 'X' && disableAllButtons()
     player === 'X' &&
-        setTimeout(() => computerMoveIntelligent(), Math.random() * 500 + 500)
+        setTimeout(
+            () =>
+                computerMoveIntelligent(
+                    findIntelligentMoves,
+                    gridScore,
+                    setMark,
+                    checkOver
+                ),
+            Math.random() * 500 + 500
+        )
     player === 'O' &&
         gridScore.map((item, index) => {
             if (!item) {
@@ -172,24 +148,6 @@ const checkOver = (player) => {
                 element.removeAttribute('disabled')
             }
         })
-}
-
-const computerMoveIntelligent = () => {
-    const availableElements = gridScore
-        .map((item, index) => (item === '' ? index : null))
-        .filter((index) => index !== null)
-
-    const intelligentElements = findIntelligentMoves(availableElements)
-
-    const random = Math.floor(Math.random() * intelligentElements.length)
-    gridScore[intelligentElements[random]] = 'O'
-
-    const element = document.getElementsByClassName(
-        `gridElement${intelligentElements[random]}`
-    )[0]
-
-    setMark(element, 'O')
-    checkOver('O')
 }
 
 const findIntelligentMoves = (availableElements) => {
@@ -310,7 +268,7 @@ const setMark = (element, mark) => {
     checkOver(mark)
 }
 
-const generateGrid = () => {
+const _generateGrid = (() => {
     const gameGrid = document.getElementById('gameGrid')
 
     for (let i = 0; i < 9; i++) {
@@ -328,33 +286,4 @@ const generateGrid = () => {
         })
         gameGrid.appendChild(gridElement)
     }
-}
-
-const handleFocusTrap = (e) => {
-    const focusableButtons = Array.from(
-        document.querySelectorAll('button')
-    ).filter((item) => !item.disabled)
-
-    const firstButton = focusableButtons[0]
-    const lastButton = focusableButtons.at(-1)
-
-    if (e.key !== 'Tab') {
-        return
-    }
-
-    if (e.shiftKey) {
-        if (document.activeElement === firstButton) {
-            e.preventDefault()
-            lastButton.focus()
-        }
-    } else {
-        if (document.activeElement === lastButton) {
-            e.preventDefault()
-            firstButton.focus()
-        }
-    }
-}
-
-document.addEventListener('keydown', handleFocusTrap)
-
-generateGrid()
+})()
