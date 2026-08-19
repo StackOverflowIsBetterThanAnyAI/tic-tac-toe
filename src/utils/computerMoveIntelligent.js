@@ -8,7 +8,10 @@ export const computerMoveIntelligent = (
         .map((item, index) => (item === '' ? index : null))
         .filter((index) => index !== null)
 
-    const intelligentElements = findIntelligentMoves(availableElements)
+    const intelligentElements = findIntelligentMoves(
+        availableElements,
+        gridScore
+    )
 
     const random = Math.floor(Math.random() * intelligentElements.length)
     gridScore[intelligentElements[random]] = 'O'
