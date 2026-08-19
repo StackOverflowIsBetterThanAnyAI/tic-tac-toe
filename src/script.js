@@ -1,7 +1,7 @@
 import { computerMoveIntelligent } from './utils/computerMoveIntelligent.js'
 import { disableAllButtons } from './utils/disableAllButtons.js'
-import { displayWinningText } from './utils/displayWinningText.js'
 import { enableAllButtons } from './utils/enableAllButtons.js'
+import { gameOver } from './utils/gameOver.js'
 import { handleFocusTrap } from './utils/handleFocusTrap.js'
 import { hideWinningText } from './utils/hideWinningText.js'
 import { highlightWinningRow } from './utils/highlightWinningRow.js'
@@ -44,58 +44,53 @@ restartGame.addEventListener('keydown', handleRestartKeydown)
 
 document.addEventListener('keydown', handleFocusTrap)
 
-const gameOver = (winner) => {
-    disableAllButtons()
-    displayWinningText(restartGame, winner, winnerText)
-}
-
 const checkOver = (player) => {
     if (gridScore[0].length) {
         if (gridScore[0] === gridScore[3] && gridScore[0] === gridScore[6]) {
-            gameOver(gridScore[0])
+            gameOver(restartGame, gridScore[0], winnerText)
             highlightWinningRow([0, 3, 6], gridScore[0])
             return
         }
         if (gridScore[0] === gridScore[1] && gridScore[0] === gridScore[2]) {
-            gameOver(gridScore[0])
+            gameOver(restartGame, gridScore[0], winnerText)
             highlightWinningRow([0, 1, 2], gridScore[0])
             return
         }
         if (gridScore[0] === gridScore[4] && gridScore[0] === gridScore[8]) {
-            gameOver(gridScore[0])
+            gameOver(restartGame, gridScore[0], winnerText)
             highlightWinningRow([0, 4, 8], gridScore[0])
             return
         }
     }
     if (gridScore[1].length) {
         if (gridScore[1] === gridScore[4] && gridScore[1] === gridScore[7]) {
-            gameOver(gridScore[1])
+            gameOver(restartGame, gridScore[1], winnerText)
             highlightWinningRow([1, 4, 7], gridScore[1])
             return
         }
     }
     if (gridScore[2].length) {
         if (gridScore[2] === gridScore[5] && gridScore[2] === gridScore[8]) {
-            gameOver(gridScore[2])
+            gameOver(restartGame, gridScore[2], winnerText)
             highlightWinningRow([2, 5, 8], gridScore[2])
             return
         }
         if (gridScore[2] === gridScore[4] && gridScore[2] === gridScore[6]) {
-            gameOver(gridScore[2])
+            gameOver(restartGame, gridScore[2], winnerText)
             highlightWinningRow([2, 4, 6], gridScore[2])
             return
         }
     }
     if (gridScore[3].length) {
         if (gridScore[3] === gridScore[4] && gridScore[3] === gridScore[5]) {
-            gameOver(gridScore[3])
+            gameOver(restartGame, gridScore[3], winnerText)
             highlightWinningRow([3, 4, 5], gridScore[3])
             return
         }
     }
     if (gridScore[6].length) {
         if (gridScore[6] === gridScore[7] && gridScore[6] === gridScore[8]) {
-            gameOver(gridScore[6])
+            gameOver(restartGame, gridScore[6], winnerText)
             highlightWinningRow([6, 7, 8], gridScore[6])
             return
         }
@@ -111,7 +106,7 @@ const checkOver = (player) => {
         gridScore[7] &&
         gridScore[8]
     ) {
-        gameOver('-')
+        gameOver(restartGame, '-', winnerText)
         return
     }
 
