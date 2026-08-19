@@ -7,7 +7,7 @@ import { handleRestart } from './utils/handleRestart.js'
 import { handleRestartKeydown } from './utils/handleRestartKeydown.js'
 import { highlightWinningRow } from './utils/highlightWinningRow.js'
 
-let gridScore = ['', '', '', '', '', '', '', '', '']
+const gridScore = ['', '', '', '', '', '', '', '', '']
 
 const winnerText = document.getElementById('winnerText')
 const restartGame = document.getElementById('restartGame')
