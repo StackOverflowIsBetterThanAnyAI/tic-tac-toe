@@ -17,6 +17,5 @@ export const computerMoveIntelligent = (
         `gridElement${intelligentElements[random]}`
     )[0]
 
-    setMark(element, 'O')
-    checkOver('O')
+    setMark(checkOver, element, gridScore, 'O')
 }

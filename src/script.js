@@ -5,6 +5,7 @@ import { enableAllButtons } from './utils/enableAllButtons.js'
 import { handleFocusTrap } from './utils/handleFocusTrap.js'
 import { hideWinningText } from './utils/hideWinningText.js'
 import { highlightWinningRow } from './utils/highlightWinningRow.js'
+import { setMark } from './utils/setMark.js'
 
 let gridScore = ['', '', '', '', '', '', '', '', '']
 
@@ -244,17 +245,6 @@ const findIntelligentMoves = (availableElements) => {
     return smartestMoves
 }
 
-const setMark = (element, mark) => {
-    element.textContent = mark
-    element.setAttribute('disabled', true)
-    const index = element.classList[0].at(-1)
-    if (mark === 'X') {
-        gridScore[index] = 'X'
-        element.style.color = '#fcd874'
-    }
-    checkOver(mark)
-}
-
 const generateGrid = () => {
     const gameGrid = document.getElementById('gameGrid')
 
@@ -262,11 +252,11 @@ const generateGrid = () => {
         const gridElement = document.createElement('button')
         gridElement.classList.add(`gridElement${i}`)
         gridElement.addEventListener('mousedown', () =>
-            setMark(gridElement, 'X')
+            setMark(checkOver, gridElement, gridScore, 'X')
         )
         gridElement.addEventListener('keydown', (e) => {
             if ([' ', 'Enter'].includes(e.key)) {
-                setMark(gridElement, 'X')
+                setMark(checkOver, gridElement, gridScore, 'X')
             }
         })
         gameGrid.appendChild(gridElement)
