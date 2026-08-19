@@ -4,6 +4,7 @@ import { displayWinningText } from './utils/displayWinningText.js'
 import { enableAllButtons } from './utils/enableAllButtons.js'
 import { handleFocusTrap } from './utils/handleFocusTrap.js'
 import { hideWinningText } from './utils/hideWinningText.js'
+import { highlightWinningRow } from './utils/highlightWinningRow.js'
 
 let gridScore = ['', '', '', '', '', '', '', '', '']
 
@@ -45,20 +46,6 @@ document.addEventListener('keydown', handleFocusTrap)
 const gameOver = (winner) => {
     disableAllButtons()
     displayWinningText(restartGame, winner, winnerText)
-}
-
-const highlightWinningRow = (elements, winner) => {
-    const winningElements = []
-    for (let i in elements) {
-        winningElements.push(
-            document.getElementsByClassName(`gridElement${elements[i]}`)[0]
-        )
-    }
-    winningElements.map((item) => {
-        winner === 'X'
-            ? (item.style.color = '#5bf045')
-            : (item.style.color = '#f04b4b')
-    })
 }
 
 const checkOver = (player) => {
@@ -268,7 +255,7 @@ const setMark = (element, mark) => {
     checkOver(mark)
 }
 
-const _generateGrid = (() => {
+const generateGrid = () => {
     const gameGrid = document.getElementById('gameGrid')
 
     for (let i = 0; i < 9; i++) {
@@ -286,4 +273,5 @@ const _generateGrid = (() => {
         })
         gameGrid.appendChild(gridElement)
     }
-})()
+}
+generateGrid()
