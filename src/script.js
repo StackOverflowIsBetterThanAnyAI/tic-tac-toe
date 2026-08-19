@@ -1,11 +1,11 @@
 import { computerMoveIntelligent } from './utils/computerMoveIntelligent.js'
 import { disableAllButtons } from './utils/disableAllButtons.js'
 import { gameOver } from './utils/gameOver.js'
+import { generateGrid } from './utils/generateGrid.js'
 import { handleFocusTrap } from './utils/handleFocusTrap.js'
 import { handleRestart } from './utils/handleRestart.js'
 import { handleRestartKeydown } from './utils/handleRestartKeydown.js'
 import { highlightWinningRow } from './utils/highlightWinningRow.js'
-import { setMark } from './utils/setMark.js'
 
 let gridScore = ['', '', '', '', '', '', '', '', '']
 
@@ -104,21 +104,4 @@ const checkOver = (player) => {
         })
 }
 
-const generateGrid = () => {
-    const gameGrid = document.getElementById('gameGrid')
-
-    for (let i = 0; i < 9; i++) {
-        const gridElement = document.createElement('button')
-        gridElement.classList.add(`gridElement${i}`)
-        gridElement.addEventListener('mousedown', () =>
-            setMark(checkOver, gridElement, gridScore, 'X')
-        )
-        gridElement.addEventListener('keydown', (e) => {
-            if ([' ', 'Enter'].includes(e.key)) {
-                setMark(checkOver, gridElement, gridScore, 'X')
-            }
-        })
-        gameGrid.appendChild(gridElement)
-    }
-}
-generateGrid()
+generateGrid(checkOver, gridScore)
