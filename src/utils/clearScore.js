@@ -6,7 +6,7 @@ export const clearScore = (gridScore) => {
     )
 
     for (let i in gridButtons) {
-        gridButtons[i].textContent = ' '
+        gridButtons[i].textContent = ''
         gridButtons[i].style.color = '#e3e3e3'
     }
 }

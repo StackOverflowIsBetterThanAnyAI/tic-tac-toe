@@ -19,7 +19,7 @@ const clearScore = () => {
     )
 
     for (let i in gridButtons) {
-        gridButtons[i].textContent = ' '
+        gridButtons[i].textContent = ''
         gridButtons[i].style.color = '#e3e3e3'
     }
 }
@@ -261,8 +261,6 @@ const generateGrid = () => {
     for (let i = 0; i < 9; i++) {
         const gridElement = document.createElement('button')
         gridElement.classList.add(`gridElement${i}`)
-        const text = document.createTextNode(' ')
-        gridElement.appendChild(text)
         gridElement.addEventListener('mousedown', () =>
             setMark(gridElement, 'X')
         )
