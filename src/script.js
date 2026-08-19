@@ -1,10 +1,9 @@
-import { clearScore } from './utils/clearScore.js'
 import { computerMoveIntelligent } from './utils/computerMoveIntelligent.js'
 import { disableAllButtons } from './utils/disableAllButtons.js'
-import { enableAllButtons } from './utils/enableAllButtons.js'
 import { gameOver } from './utils/gameOver.js'
 import { handleFocusTrap } from './utils/handleFocusTrap.js'
-import { hideWinningText } from './utils/hideWinningText.js'
+import { handleRestart } from './utils/handleRestart.js'
+import { handleRestartKeydown } from './utils/handleRestartKeydown.js'
 import { highlightWinningRow } from './utils/highlightWinningRow.js'
 import { setMark } from './utils/setMark.js'
 
@@ -13,22 +12,12 @@ let gridScore = ['', '', '', '', '', '', '', '', '']
 const winnerText = document.getElementById('winnerText')
 const restartGame = document.getElementById('restartGame')
 
-const handleRestart = () => {
-    clearScore(gridScore)
-    enableAllButtons()
-    hideWinningText(restartGame, winnerText)
-}
-
-const handleRestartKeydown = (e) => {
-    if ([' ', 'Enter'].includes(e.key)) {
-        clearScore(gridScore)
-        enableAllButtons()
-        hideWinningText(restartGame, winnerText)
-    }
-}
-
-restartGame.addEventListener('mousedown', handleRestart)
-restartGame.addEventListener('keydown', handleRestartKeydown)
+restartGame.addEventListener('mousedown', () =>
+    handleRestart(gridScore, restartGame, winnerText)
+)
+restartGame.addEventListener('keydown', (e) =>
+    handleRestartKeydown(e, gridScore, restartGame, winnerText)
+)
 
 document.addEventListener('keydown', handleFocusTrap)
 
