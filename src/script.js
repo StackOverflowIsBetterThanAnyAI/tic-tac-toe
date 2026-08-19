@@ -2,7 +2,6 @@ import { computerMoveIntelligent } from './utils/computerMoveIntelligent.js'
 import { disableAllButtons } from './utils/disableAllButtons.js'
 import { displayWinningText } from './utils/displayWinningText.js'
 import { enableAllButtons } from './utils/enableAllButtons.js'
-import { findIntelligentMoves } from './utils/findIntelligentMoves.js'
 import { handleFocusTrap } from './utils/handleFocusTrap.js'
 import { hideWinningText } from './utils/hideWinningText.js'
 import { highlightWinningRow } from './utils/highlightWinningRow.js'
@@ -119,7 +118,7 @@ const checkOver = (player) => {
     player === 'X' && disableAllButtons()
     player === 'X' &&
         setTimeout(
-            () => computerMoveIntelligent(gridScore, setMark, checkOver),
+            () => computerMoveIntelligent(gridScore, checkOver),
             Math.random() * 500 + 500
         )
     player === 'O' &&
